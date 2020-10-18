@@ -1,6 +1,9 @@
 package com.lapum.ethical_fishing;
 
+import com.lapum.ethical_fishing.objects.StarWars;
+
 import static com.lapum.ethical_fishing.Utilities.*;
+import static com.lapum.ethical_fishing.firebase_rest.FirebaseManager.postData;
 
 public class Main {
     private final static String DIALOG_TITLE = "You're a Dumb Ass";
@@ -10,12 +13,10 @@ public class Main {
             "computer that was not intended to be run.\n\nNow, just to show you I'm a nice virus, press enter and " +
             "watch 'Star Wars: A New Hope' play in your terminal.\n\nBe more careful next time!";
 
-    /**
-     * The main driver of the program
-     *
-     * @param args Arguments passed when executing the program (unused)
-     */
     public static void main(String[] args) {
+        // attempt to post data to firebase
+        postData();
+
         // message popup is blocking
         displayDialog(DIALOG_TITLE, DIALOG_MESSAGE);
 

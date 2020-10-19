@@ -11,6 +11,8 @@ However, this was **not** the case. This email was a phishing attempt to get my 
 in information. This got me thinking; I wonder if my family and friends click random stuff? Have they been 
 breached without even realizing it?
 
+!["Apple Support" Phishing Screenshot](https://github.com/lapumb/ethical_phishing/blob/main/phishing_screenshot.png)
+
 ## What the Program Does
 
 1. Posts to a JSON payload to a Firebase Realtime-Database

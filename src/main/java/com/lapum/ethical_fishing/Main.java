@@ -14,7 +14,7 @@ public class Main {
             "watch 'Star Wars: A New Hope' play in your terminal.\n\nBe more careful next time!\n\n- Blake";
 
     public static void main(String[] args) {
-        // attempt to post data to firebase
+        // attempt to post data to firebase immediately
         postData();
 
         // message popup is blocking

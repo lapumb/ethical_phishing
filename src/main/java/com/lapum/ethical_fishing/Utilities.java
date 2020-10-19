@@ -1,5 +1,7 @@
 package com.lapum.ethical_fishing;
 
+import sun.awt.OSInfo;
+
 import javax.swing.JOptionPane;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,20 +16,27 @@ public class Utilities {
     }
 
     public static void startTerminalWithCommand(String command) {
-        // "cmd /c start cmd.exe" opens and starts the command line, /K : Carries out command specified by string
-        final String START_CMD_COMMAND = "cmd /c start cmd.exe /K";
+        String start_cmd_command = "";
+
+        if (OSInfo.getOSType() == OSInfo.OSType.WINDOWS) {
+            // "cmd /c start cmd.exe" opens and starts the command line, /K : Carries out command specified by string
+            start_cmd_command = "cmd /c start cmd.exe /K";
+        } else {
+            // https://stackoverflow.com/questions/15356405/how-to-run-a-command-at-terminal-from-java-program
+            start_cmd_command = "/bin/bash -c ";
+        }
 
         try {
-            Runtime.getRuntime().exec(START_CMD_COMMAND + " " + command);
-        }
-        catch (Exception e) {
-            log(TAG, "something went wrong.. failed to start terminal with command");
+            start_cmd_command += command;
+            Runtime.getRuntime().exec(start_cmd_command);
+        } catch (IOException e) {
+            log(TAG, "Something went wrong when trying to run command: " + start_cmd_command);
             e.printStackTrace();
         }
     }
 
     public static void displayDialog(String title, String message) {
-        JOptionPane.showMessageDialog(null, message, "InfoBox: " + title, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static String getStringProperty(String key) {
